@@ -25,6 +25,12 @@ public class SinglyLinkedListTest {
 		list.deleteElement(list.find(2));
 		System.out.println(list.checkCorrectOrder(1, 0, null));
 
+		System.out.println(list.findMToLastElement(0) != null);
+		System.out.println(list.findMToLastElement(0).getData() == 0);
+		System.out.println(list.findMToLastElement(1) != null);
+		System.out.println(list.findMToLastElement(1).getData() == 1);
+		System.out.println(list.findMToLastElement(2) == null);
+
 		list.deleteList();
 		System.out.println(list.checkCorrectOrder(null));
 	}

@@ -139,6 +139,29 @@ public class SinglyLinkedList<T> {
 		this.tail = null;
 	}
 
+	public SinglyLinkedListItem<T> findMToLastElement(int m) {
+		if (head == null) {
+			return null;
+		}
+
+		SinglyLinkedListItem<T> currentItem = this.head;
+		for (int i = 0; i < m; i++) {
+			if (currentItem.getNext() == null) {
+				return null;
+			} else {
+				currentItem = currentItem.getNext();
+			}
+		}
+
+		SinglyLinkedListItem<T> mBehindItem = this.head;
+		while (currentItem.getNext() != null) {
+			currentItem = currentItem.getNext();
+			mBehindItem = mBehindItem.getNext();
+		}
+
+		return mBehindItem;
+	}
+
 	public SinglyLinkedListItem<T> getHead() {
 		return this.head;
 	}

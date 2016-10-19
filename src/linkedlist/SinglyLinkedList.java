@@ -6,6 +6,7 @@ package linkedlist;
  */
 public class SinglyLinkedList<T> {
 	private SinglyLinkedListItem<T> head;
+	private SinglyLinkedListItem<T> tail;
 
 	private boolean compareTwoValue(T value1, T value2) {
 		if (value1 == null) {
@@ -77,31 +78,72 @@ public class SinglyLinkedList<T> {
 		return null;
 	}
 
-	public void deleteElement(SinglyLinkedListItem<T> deleteMe) {
+	public boolean insertAfter(SinglyLinkedListItem<T> item, T value) {
+		SinglyLinkedListItem<T> newItem = new SinglyLinkedListItem<>(value);
+		if (item == null) {
+			newItem.setNext(this.head);
+			this.head = newItem;
+			if (this.tail == null) {
+				this.tail = newItem;
+			}
+			return true;
+		}
+
+		SinglyLinkedListItem<T> currentItem = this.head;
+		while (currentItem != null) {
+			if (currentItem == item) {
+				newItem.setNext(currentItem.getNext());
+				currentItem.setNext(newItem);
+				if (currentItem == this.tail) {
+					this.tail = newItem;
+				}
+				return true;
+			}
+			currentItem = currentItem.getNext();
+		}
+
+		return true;
+	}
+
+	public boolean deleteElement(SinglyLinkedListItem<T> deleteMe) {
+		// head == null
 		if (this.head == null || deleteMe == null) {
-			return;
+			return false;
 		}
 
 		if (this.head == deleteMe) {
-			this.head = this.head.getNext();
-			return;
+			this.head = deleteMe.getNext();
+			if (this.head == null) {
+				this.tail = null;
+			}
+			return true;
 		}
 
-		SinglyLinkedListItem<T> element = this.head;
-		while (element != null) {
-			if (element.getNext() == deleteMe) {
-				element.setNext(deleteMe.getNext());
-				return;
+		SinglyLinkedListItem<T> currentItem = this.head;
+		while (currentItem != null) {
+			if (currentItem.getNext() == deleteMe) {
+				currentItem.setNext(deleteMe.getNext());
+				if (currentItem.getNext() == null) {
+					this.tail = currentItem;
+				}
+				return true;
 			}
-			element = element.getNext();
+			currentItem = currentItem.getNext();
 		}
+
+		return false;
 	}
 
 	public void deleteList() {
 		this.head = null;
+		this.tail = null;
 	}
 
 	public SinglyLinkedListItem<T> getHead() {
 		return this.head;
+	}
+
+	public SinglyLinkedListItem<T> getTail() {
+		return tail;
 	}
 }

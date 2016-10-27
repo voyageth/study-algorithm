@@ -13,20 +13,20 @@ public class StringUtils {
 			return null;
 		}
 
-		Set<String> onceCharSet = new HashSet<>();
-		Set<String> duplicateCharSet = new HashSet<>();
+		Set<Integer> onceCharSet = new HashSet<>();
+		Set<Integer> duplicateCharSet = new HashSet<>();
 
 		for (int i = 0; i < str.length();) {
 			int codePoint = str.codePointAt(i);
 			int codePointCharCount = Character.charCount(codePoint);
 			String charString = new String(Character.toChars(codePoint));
 			System.out.print(charString + "(" + codePointCharCount + ") ");
-			if (!duplicateCharSet.contains(charString)) {
-				if (!onceCharSet.contains(charString)) {
-					onceCharSet.add(charString);
+			if (!duplicateCharSet.contains(codePoint)) {
+				if (!onceCharSet.contains(codePoint)) {
+					onceCharSet.add(codePoint);
 				} else {
-					onceCharSet.remove(charString);
-					duplicateCharSet.add(charString);
+					onceCharSet.remove(codePoint);
+					duplicateCharSet.add(codePoint);
 				}
 			}
 			i += codePointCharCount;
@@ -35,9 +35,8 @@ public class StringUtils {
 
 		for (int i = 0; i < str.length();) {
 			int codePoint = str.codePointAt(i);
-			String charString = new String(Character.toChars(codePoint));
-			if (onceCharSet.contains(charString)) {
-				return charString;
+			if (onceCharSet.contains(codePoint)) {
+				return new String(Character.toChars(codePoint));
 			}
 			i += Character.charCount(codePoint);
 		}

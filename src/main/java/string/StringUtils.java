@@ -8,6 +8,38 @@ import java.util.Set;
  *         2016-10-28
  */
 public class StringUtils {
+	public static String removeChars(String str, String remove) {
+		if (str == null) {
+			return null;
+		}
+		if (remove == null) {
+			return str;
+		}
+
+		Set<Integer> removeSet = new HashSet<>();
+		for (int i = 0; i < remove.length();) {
+			int codePoint = remove.codePointAt(i);
+			removeSet.add(codePoint);
+			int codePointCharCount = Character.charCount(codePoint);
+			i += codePointCharCount;
+		}
+
+		char[] resultCharArray = str.toCharArray();
+		int index = 0;
+
+		for (int i = 0; i < str.length();) {
+			int codePoint = str.codePointAt(i);
+			int codePointCharCount = Character.charCount(codePoint);
+			char[] codePointChars = Character.toChars(codePoint);
+			if (!removeSet.contains(codePoint)) {
+				System.arraycopy(codePointChars, 0, resultCharArray, index, codePointCharCount);
+				index += codePointCharCount;
+			}
+			i += codePointCharCount;
+		}
+		return new String(resultCharArray, 0, index);
+	}
+
 	public static String firstNoneRepeated(String str) {
 		if (str == null) {
 			return null;

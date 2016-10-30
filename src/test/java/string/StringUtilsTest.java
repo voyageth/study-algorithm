@@ -15,4 +15,9 @@ public class StringUtilsTest {
 		System.out.println(StringUtils.firstNoneRepeated("aA🇦🇨🇦🇸🇦🇴🇧🇧🇦🇴🐵a🦁a🐱🐅🐱🐕😉😄😊🙂"));
 		System.out.println(StringUtils.firstNoneRepeated("暇暇蘿暇\uD841\uDF0E暇暇暇\uD841\uDF0E"));
 	}
+
+	@Test
+	public void removeCharsTest() {
+		System.out.println(StringUtils.removeChars("Battle of the Vowels: Hawaii vs. Grozny", "aeiou"));
+	}
 }

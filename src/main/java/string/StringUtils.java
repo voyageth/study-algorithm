@@ -8,6 +8,42 @@ import java.util.Set;
  *         2016-10-28
  */
 public class StringUtils {
+	public static String reverseWords(String str) {
+		if (str == null) {
+			return null;
+		}
+
+		char[] charArray = str.toCharArray();
+		reverseWord(charArray, 0, charArray.length);
+
+		int wordStartIndex = 0;
+		int wordEndIndex = 0;
+		for (int i = 0; i < charArray.length; i++) {
+			if (' ' == charArray[i]) {
+				if (wordStartIndex < wordEndIndex) {
+					reverseWord(charArray, wordStartIndex, wordEndIndex);
+				}
+				wordStartIndex = i + 1;
+				wordEndIndex = wordStartIndex;
+			} else {
+				wordEndIndex++;
+			}
+		}
+		if (wordStartIndex < wordEndIndex) {
+			reverseWord(charArray, wordStartIndex, wordEndIndex);
+		}
+
+		return new String(charArray);
+	}
+
+	private static void reverseWord(char[] charArray, int startIndex, int endIndex) {
+		for (int i = 0; i < (endIndex - startIndex) / 2; i++) {
+			char tempChar = charArray[startIndex + i];
+			charArray[startIndex + i] = charArray[endIndex - 1 - i];
+			charArray[endIndex - 1 - i] = tempChar;
+		}
+	}
+
 	public static String removeChars(String str, String remove) {
 		if (str == null) {
 			return null;

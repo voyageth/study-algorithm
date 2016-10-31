@@ -8,6 +8,11 @@ import org.junit.Test;
  */
 public class StringUtilsTest {
 	@Test
+	public void reverseWordsTest() {
+		System.out.println(StringUtils.reverseWords("Do or do not, there is no try."));
+	}
+
+	@Test
 	public void test() {
 		System.out.println(StringUtils.firstNoneRepeated("total"));
 		System.out.println(StringUtils.firstNoneRepeated("teeter"));

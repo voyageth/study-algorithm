@@ -8,6 +8,48 @@ import java.util.Set;
  *         2016-10-28
  */
 public class StringUtils {
+	public static String intToStr(int value) {
+		StringBuilder result = new StringBuilder();
+		boolean isNegative = false;
+		if (value < 0) {
+			isNegative = true;
+			value = -value;
+		}
+		do {
+			result.append((char)('0' + (value % 10)));
+			value = value / 10;
+		} while (value > 0);
+		if (isNegative) {
+			result.append('-');
+		}
+		result.reverse();
+		return result.toString();
+	}
+
+	public static Integer strToInt(String str) {
+		if (str == null) {
+			return null;
+		}
+
+		boolean isNegative = false;
+		int result = 0;
+		for (int i = 0; i < str.length(); i++) {
+			char currentChar = str.charAt(i);
+			if (currentChar == '-') {
+				isNegative = true;
+			}
+
+			if (currentChar >= '0' && currentChar <= '9') {
+				result = result * 10 + (currentChar - '0');
+			}
+		}
+		if (isNegative) {
+			result = -result;
+		}
+
+		return result;
+	}
+
 	public static String reverseWords(String str) {
 		if (str == null) {
 			return null;

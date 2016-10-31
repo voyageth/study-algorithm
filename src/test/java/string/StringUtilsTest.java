@@ -8,6 +8,22 @@ import org.junit.Test;
  */
 public class StringUtilsTest {
 	@Test
+	public void intToStrTest() {
+		System.out.println(StringUtils.intToStr(-145235235));
+		System.out.println(StringUtils.intToStr(1));
+		System.out.println(StringUtils.intToStr(0));
+		System.out.println(StringUtils.intToStr(235346364));
+	}
+
+	@Test
+	public void strToIntTest() {
+		System.out.println(StringUtils.strToInt("-145235235"));
+		System.out.println(StringUtils.strToInt("1"));
+		System.out.println(StringUtils.strToInt("0"));
+		System.out.println(StringUtils.strToInt("235346364"));
+	}
+
+	@Test
 	public void reverseWordsTest() {
 		System.out.println(StringUtils.reverseWords("Do or do not, there is no try."));
 	}

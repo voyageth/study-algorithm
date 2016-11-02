@@ -10,12 +10,13 @@ public class InsertionSort {
 			return;
 		}
 
-		for (int i = 0; i < array.length; i++) {
+		for (int i = 1; i < array.length; i++) {
 			int currentValue = array[i];
-			for (int j = 0; j < i; j++) {
+			for (int j = i - 1; j >= 0; j--) {
 				if (currentValue < array[j]) {
-					System.arraycopy(array, j, array, j + 1, i - j);
+					array[j + 1] = array[j];
 					array[j] = currentValue;
+				} else {
 					break;
 				}
 			}

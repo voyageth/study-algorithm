@@ -1,5 +1,7 @@
 package sort;
 
+import java.util.Arrays;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -37,6 +39,23 @@ public class SelectionSortTest {
 		Assert.assertArrayEquals(new int[] {1}, input);
 		input = new int[] {3, 2, 5, 23, 324, 46, 234, 1};
 		SelectionSort.sortAscRec(input);
+		Assert.assertArrayEquals(new int[] {1, 2, 3, 5, 23, 46, 234, 324}, input);
+	}
+
+	@Test
+	public void recStableTest() {
+		int[] input = null;
+		SelectionSort.sortAscRecStable(input);
+		Assert.assertArrayEquals(null, input);
+		input = new int[] {};
+		SelectionSort.sortAscRecStable(input);
+		Assert.assertArrayEquals(new int[] {}, input);
+		input = new int[] {1};
+		SelectionSort.sortAscRecStable(input);
+		Assert.assertArrayEquals(new int[] {1}, input);
+		input = new int[] {3, 2, 5, 23, 324, 46, 234, 1};
+		SelectionSort.sortAscRecStable(input);
+		System.out.println(Arrays.toString(input));
 		Assert.assertArrayEquals(new int[] {1, 2, 3, 5, 23, 46, 234, 324}, input);
 	}
 }

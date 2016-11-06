@@ -10,44 +10,39 @@ public class QuickSort {
 			return;
 		}
 
-		sortAscRec(array, 0, array.length);
+		sortAscRec(array, 0, array.length - 1);
 	}
 
 	private static void sortAscRec(int[] array, int startIndex, int endIndex) {
-		if (startIndex >= endIndex || endIndex == 0) {
+		if (startIndex >= endIndex || endIndex < 0) {
 			return;
 		}
 
-		int midIndex = startIndex + (endIndex - startIndex) / 2;
-		int midValue = array[midIndex];
+		int midValue = array[(startIndex + endIndex) / 2];
 		int leftIndex = startIndex;
-		int rightIndex = endIndex - 1;
+		int rightIndex = endIndex;
 
-		while (leftIndex < rightIndex) {
-			for (int i = leftIndex; i < rightIndex; i++) {
-				if (array[i] < midValue) {
-					swap(array, i, leftIndex);
-					leftIndex++;
-				} else {
-					swap(array, i, rightIndex);
-					if (i == midIndex) {
-						midIndex = rightIndex;
-					} else if (rightIndex == midIndex) {
-						midIndex = i;
-					}
-					rightIndex--;
-				}
+		while (leftIndex <= rightIndex) {
+			while (array[leftIndex] < midValue) {
+				leftIndex++;
+			}
+
+			while (array[rightIndex] > midValue) {
+				rightIndex--;
+			}
+
+			if (leftIndex <= rightIndex) {
+				swap(array, leftIndex, rightIndex);
+				leftIndex++;
+				rightIndex--;
 			}
 		}
 
-		if (array[leftIndex] < midValue) {
-			swap(array, leftIndex + 1, midIndex);
-			sortAscRec(array, startIndex, leftIndex + 1);
-			sortAscRec(array, leftIndex + 2, endIndex);
-		} else {
-			swap(array, leftIndex, midIndex);
-			sortAscRec(array, startIndex, leftIndex);
-			sortAscRec(array, leftIndex + 1, endIndex);
+		if (startIndex < rightIndex) {
+			sortAscRec(array, startIndex, rightIndex);
+		}
+		if (leftIndex < endIndex) {
+			sortAscRec(array, leftIndex, endIndex);
 		}
 	}
 

@@ -11,7 +11,7 @@ public class TelephoneWordTest {
 	@Test
 	public void printTest() {
 		TelephoneWord telephoneWord = new TelephoneWord();
-		telephoneWord.print(new int[] {2, 2});
+		telephoneWord.printAvailableWordsRec(new int[] {2, 1, 2});
 	}
 
 	@Test
